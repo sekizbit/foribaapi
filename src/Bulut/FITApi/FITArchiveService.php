@@ -268,7 +268,7 @@ class FITArchiveService
             'headers' => $this->headers,
             'body' => $xmlMake,
             'http_errors' => false,
-            'verify' => false
+            'verify' => false 
         ]);
         $body = $response->getBody()->getContents();
         $this->lastResponse = $body;
