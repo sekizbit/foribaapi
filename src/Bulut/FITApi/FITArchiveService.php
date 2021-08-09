@@ -267,7 +267,8 @@ class FITArchiveService
         $response = $this->client->request('POST', self::$URL, [
             'headers' => $this->headers,
             'body' => $xmlMake,
-            'http_errors' => false
+            'http_errors' => false,
+            'verify' => false 
         ]);
         $body = $response->getBody()->getContents();
         $this->lastResponse = $body;
