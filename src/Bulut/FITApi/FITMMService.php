@@ -253,7 +253,8 @@ class FITMMService
             'headers' => $this->headers,
             'body' => $xmlMake,
             'http_errors' => false,
-            'debug' => true
+            'debug' => true,
+            'verify' => false
         ]);
         $body = $response->getBody()->getContents();
         $this->lastResponse = $body;
