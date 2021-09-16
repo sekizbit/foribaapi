@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: orhangazibasli
@@ -99,6 +100,11 @@ class Invoice
     public $AccountingCustomerParty;
 
     /**
+     * @var \Bulut\eFaturaUBL\PaymentAlternativeExchangeRate
+     */
+    public $PricingExchangeRate;
+
+    /**
      * @var |Bulut|eFaturaUBL|TaxTotal
      */
     public $TaxTotal;
@@ -140,11 +146,6 @@ class Invoice
     public $OriginatorDocumentReference;
 
     /**
-     * @var \Bulut\eFaturaUBL\PaymentAlternativeExchangeRate
-     */
-    public $PaymentAlternativeExchangeRate;
-
-    /**
      * @var \Bulut\eFaturaUBL\InvoicePeriod
      */
     public $InvoicePeriod;
@@ -158,6 +159,4 @@ class Invoice
      * @var \Bulut\eFaturaUBL\InvoiceLine Array
      */
     public $InvoiceLine;
-
-
 }
