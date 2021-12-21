@@ -267,13 +267,28 @@ class FITInvoiceService {
 
     /**
      * @param GetUserList $request
-     * @return string
      * @throws
      */
-    public function GetUserListXmlRequest(GetUserList $request) //: GetUserListResponse
+    public function DownloadUserListXmlRequest(GetUserList $request, string $path)
     {
-        $responseText = $this->request($request);
-        return $this->getXml($responseText);
+        $get_variables = get_object_vars($request);
+        $methodName = $get_variables['methodName'];
+        $soapAction = $get_variables['soapAction'];
+        unset($get_variables['methodName']);
+        unset($get_variables['soapAction']);
+        $xmlMake = $this->makeXml($methodName, $get_variables);
+
+        $this->lastRequest = $xmlMake;
+
+        $this->headers['SOAPAction'] = $soapAction;
+        $this->headers['Content-Length'] = strlen($xmlMake);
+        $response = $this->client->request('POST', self::$URL, [
+            'headers' => $this->headers,
+            'body' => $xmlMake,
+            'http_errors' => false,
+            'verify' => false,
+            'sink' => $path
+        ]);
     }
 
     /**
