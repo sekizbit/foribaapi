@@ -28,7 +28,7 @@ class TaxTotal
     /**
      * Vergi hesaplaması ile ilgili bilgilere yer verilir.
      *
-     * @var TTransportEquipmentaxSubtotal
+     * @var $TaxSubtotal
      */
     public $TaxSubtotal;
 }

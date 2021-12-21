@@ -156,7 +156,7 @@ class FITInvoiceService {
 
                 }
             }else{
-                if(strlen($val) > 0)
+                if($val && strlen($val) > 0)
                     $subXml .= '<'.$this->soapSubClassPrefix.':'.$key.'>'.(string)$val.'</'.$this->soapSubClassPrefix.':'.$key.'>';
             }
         }
@@ -263,6 +263,17 @@ class FITInvoiceService {
             $list[] = $responseObj;
         }
         return $list;
+    }
+
+    /**
+     * @param GetUserList $request
+     * @return string
+     * @throws
+     */
+    public function GetUserListXmlRequest(GetUserList $request) //: GetUserListResponse
+    {
+        $responseText = $this->request($request);
+        return $this->getXml($responseText);
     }
 
     /**
