@@ -61,7 +61,7 @@ class XMLHelper
                     }
 
                 }else{
-                    if(!empty($val))
+                    if(!is_null($val))
                         $xml .= '<cbc:'.$key.'>'.$val.'</cbc:'.$key.'>';
                 }
 
