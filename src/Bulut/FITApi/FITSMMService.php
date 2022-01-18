@@ -245,6 +245,7 @@ class FITSMMService
 
         if(get_class($request) == GetDocument::class){
             $xmlMake = str_replace(['get:', ':get'],['esmm:', ':esmm'], $xmlMake);
+            $xmlMake = str_replace('GetDocumentRequest','getDocumentRequest', $xmlMake);
         }
 
         $this->lastRequest = $xmlMake;
@@ -254,7 +255,7 @@ class FITSMMService
             'body' => $xmlMake,
             'http_errors' => false,
             'debug' => false,
-            'verify' => false 
+            'verify' => false
         ]);
         $body = $response->getBody()->getContents();
         $this->lastResponse = $body;

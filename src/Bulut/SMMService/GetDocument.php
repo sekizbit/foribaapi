@@ -11,8 +11,8 @@ namespace Bulut\SMMService;
 class GetDocument
 {
     public $soapAction = "getDocument";
-    public $methodName = "getDocumentRequest";
-    public $prefix = false;
+    public $methodName = "GetDocumentRequest";
+    public $prefix = true;
     public $namespace = "http://foriba.com/eSmm/";
 
     public $VKN_TCKN;
