@@ -110,6 +110,11 @@ class Invoice
     public $TaxTotal;
 
     /**
+     * @var \Bulut\eFaturaUBL\WithholdingTaxTotal
+     */
+    public $WithholdingTaxTotal;
+
+    /**
      * @var |Bulut|eFaturaUBL|LegalMonetaryTotal
      */
     public $LegalMonetaryTotal;
