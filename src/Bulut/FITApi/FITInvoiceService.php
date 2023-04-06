@@ -6,9 +6,12 @@
  * Time: 00:33
  */
 namespace Bulut\FITApi;
+use Bulut\eFaturaUBL\InvResponses;
 use Bulut\Exceptions\GlobalForibaException;
 use Bulut\Exceptions\SchemaValidationException;
 use Bulut\Exceptions\UnauthorizedException;
+use Bulut\InvoiceService\GetInvoiceResponses;
+use Bulut\InvoiceService\GetInvoiceResponsesResponse;
 use Bulut\InvoiceService\UBLList;
 use GuzzleHttp\Client;
 use Bulut\InvoiceService\GetEnvelopeStatus;
@@ -387,6 +390,22 @@ class FITInvoiceService {
         foreach ($ublList->sendUBLResponse->Response as $status){
             $responseObj = new SendUBLResponse();
             $this->fillObj($responseObj, $status);
+            $list[] = $responseObj;
+        }
+        return $list;
+    }
+
+    public function GetInvoiceResponsesRequest(GetInvoiceResponses $request){
+        $responseText = $this->request($request);
+        $soap = $this->getXml($responseText);
+        $ublList = $soap->xpath('//s:Body')[0];
+        $list = [];
+        foreach ($ublList->getInvResponsesResponse->Response as $status){
+            $responseObj = new GetInvoiceResponsesResponse();
+            $responseObj->InvoiceUUID = (string) $status->InvoiceUUID;
+            $InvResponses = new InvResponses();
+            $this->fillObj($InvResponses, $status->InvResponses);
+            $responseObj->InvResponses = $InvResponses;
             $list[] = $responseObj;
         }
         return $list;
